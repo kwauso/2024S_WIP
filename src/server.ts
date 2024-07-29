@@ -3,7 +3,7 @@ const cors = require('cors');
 import api from './routes/userAPI';
 const app: express.Express = express();
 
-app.use(express.static('/home/akira/did_server/public'));
+app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
 app.use('/api', api);
 
