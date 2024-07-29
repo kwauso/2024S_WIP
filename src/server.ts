@@ -1,6 +1,6 @@
 import express from 'express';
-const cors = require('cors');
-import api from './routes/userAPI';
+import cors from 'cors';
+import api from './routes/userAPI.js';
 const app: express.Express = express();
 
 app.use(express.static('/home/akira/2024S_WIP/public'));

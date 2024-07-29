@@ -7,8 +7,12 @@ async function main() {
     credential: {
       issuer: { id: identifier.did },
       credentialSubject: {
-        id: 'did:web:example.com',
-        you: 'Taro',
+        id: 'did:web:did-vc.com',
+        givenName: "taro",
+        familyName: "yamada",
+        age: "22",
+        gender: "male",
+        issuanceDate: "20XX/xx/xx"
       },
     },
     proofFormat: 'jwt',

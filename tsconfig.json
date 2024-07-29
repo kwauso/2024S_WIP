@@ -3,8 +3,9 @@
     "preserveConstEnums": true,
     "strict": true,
     "target": "esnext",
-    "module": "CommonJS",
+    "module": "ESNext",
     "rootDir": "./src",
+    "outDir": "./exec",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "downlevelIteration": true

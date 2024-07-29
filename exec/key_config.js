@@ -1,0 +1,1 @@
+export const publicKey = '4e4c5f7a958d9bc21b4a9092b827d7144262df64d72a7a26a5492b2c86f5b6e2';
