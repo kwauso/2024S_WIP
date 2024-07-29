@@ -1,0 +1,6 @@
+{
+    "name": "my_express_app",
+    "script": "./exec/server.js",
+    "exec_mode": "fork",
+    "log-date-format": "YYYY-MM-DD HH:mm Z"
+}
