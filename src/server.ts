@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import did_api from './routes/DID_API.js';
-import vc_api from './routes/VC_API.js';
 import { createDID } from './create-identifier.js';
 //import { createVC } from './create-credential.js';
 import { VerifiableCredential } from '@veramo/core';
 import { agent } from './setup.js'
+import fs from "fs";
 
 const app: express.Express = express();
 
@@ -15,7 +15,6 @@ app.set("view engine", "ejs");
 //app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
 app.use('/did', did_api);
-app.use('/vc', vc_api);
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req:express.Request, res:express.Response)=>{
@@ -28,7 +27,6 @@ app.get("/", (req:express.Request, res:express.Response)=>{
 app.get("/createDID", (req:express.Request, res:express.Response)=>{
     const FLAG = 0;
     res.render("createDID", {name:"", flag:FLAG});
-
 });
 
 app.post("/createDID", (req:express.Request, res:express.Response)=>{
@@ -57,7 +55,6 @@ app.post("/createVC", (req:express.Request, res:express.Response)=>{
         const age = req.body.age;
         const gender = req.body.gender;
         console.log(alias, age, gender);
-        res.render("createVC", {name:alias, flag:FLAG});
 
         const createVC = async(alias:string, age:number, gender:string)=>{
             const identifier = await agent.didManagerGetByAlias({ alias: `${alias}` });
@@ -74,10 +71,19 @@ app.post("/createVC", (req:express.Request, res:express.Response)=>{
               },
               proofFormat: 'jwt',
             });
+
+            try {
+                fs.writeFileSync(`./src/vc/${alias}.txt`, `${JSON.stringify(verifiableCredential, null, 2)}`, 'utf8')
+            } catch (err) {
+                console.error(err)
+            }
+  
             console.log(JSON.stringify(verifiableCredential, null, 2));
         }
 
         createVC(alias, age, gender);
+        const link = "home/akira/2024S_WIP/src/vc/" + alias + ".txt";
+        res.render("createVC", {name:alias, flag:FLAG, link:link});
 
     } catch(err){
         console.error(err);
