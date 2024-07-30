@@ -9,7 +9,7 @@ router.get("/", (req:express.Request, res:express.Response)=>{
     res.send("This API page. Here is API index below.");
 });
 
-router.get("/api1", (req:express.Request, res:express.Response)=>{
+router.get("/api1/aaa", (req:express.Request, res:express.Response)=>{
     res.json(json_1);
 });
 

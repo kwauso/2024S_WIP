@@ -23,7 +23,7 @@ const DATABASE_FILE = './database.sqlite';
 // You will need to get a project ID from infura https://www.infura.io
 //const INFURA_PROJECT_ID = '<your PROJECT_ID here>'
 // This will be the secret key for the KMS (replace this with your secret key)
-import { publicKey } from './key_config';
+import { publicKey } from './key_config.js';
 const dbConnection = new DataSource({
     type: 'sqlite',
     database: DATABASE_FILE,

@@ -6,7 +6,7 @@ const how_many_api = 3;
 router.get("/", (req, res) => {
     res.send("This API page. Here is API index below.");
 });
-router.get("/api1", (req, res) => {
+router.get("/api1/aaa", (req, res) => {
     res.json(json_1);
 });
 router.get("/api2", (req, res) => {

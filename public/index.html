@@ -2,15 +2,27 @@
 <html>
     <head>
         <meta lang="ja">
-        <title>Test Page</title>
+        <title>2024S_WIP</title>
     </head>
     <body>
         <main>
-            <img src="images/hi-lite_logo.jpg" width="200">
+            <h1>DID/VC</h1>
             <h2>About</h2>
-                <p>This page is made for testing otter's WEB application. "express" can make WEB application so express, like a local train. </p>
+                <p>In this page, you can create your own DID/VC. Your DID will be stored in this page. You can download your VC via API.</p>
+                <p>About DID, please show <a href="https://www.w3.org/TR/did-core/">here</a>.</p>
+                <p>About VC, please show <a href="https://www.w3.org/TR/vc-data-model-2.0/">here</a>.</p>
             <h2>Usage</h2>
-                <p>API exists below URL "this page/API". Each API returns API with JSON.</p>
+                <h3>Create DID</h3>
+                    <p>First, you have to make your DID to create VC. To make create DID, please click "CREATE DID" button. Do not forget your mnemonic phrases.</p>
+                <h3>Create VC</h3>
+                    <p>Now you can create your VC. Click "CREATE VC" button, and enter your username and your own mnemonic code.</p>
+                <h3>Download VC</h3>
+                    <p>You can download your VC via API as JSON. Please visit "/api/users/username"</p>
+            <!---以下のようにやるとなぜかtest.ejsがファイルとして落ちる。謎
+                <button><a href="views/test.ejs">CREATE DID</a></button>
+            -->
+            > <button><a href="createDID">CREATE DID</a></button><br>
+            > <button><a href="createVC">CREATE VC</a></button>
         </main>
     </body>
 </html>

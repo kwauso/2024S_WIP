@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CREATE DID</title>
+    </head>
+    <body>
+        <p>Hello <%= name %></p>
+        <% if (flag === 0){ %>
+            <p>You can create DID!</p>
+            <p>Click "CREATE" button.</p>
+            <form accept="/createDID" method="post">
+                <input type="submit" value="CREATE">
+            </form>
+        <% } else { %>
+            <p>you already have DID</p>
+        <% } %>
+    </body>
+</html>
