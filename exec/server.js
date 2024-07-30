@@ -7,14 +7,14 @@ app.set("views", "./public/views");
 app.set("view engine", "ejs");
 app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
-app.use('/api', api);
+app.use('/username', api);
 app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.send();
 });
 app.get("/createDID", (req, res) => {
     const FLAG = 0;
-    res.render("createDID", { name: "yaro", flag: FLAG });
+    res.render("createDID", { name: "", flag: FLAG });
 });
 app.post("/createDID", (req, res) => {
     const FLAG = 1;
@@ -23,11 +23,11 @@ app.post("/createDID", (req, res) => {
         const name = req.body.name;
         createDID(`${name}`);
         console.log(name);
+        res.render("createDID", { name: name, flag: FLAG });
     }
     catch (err) {
         console.error(err);
     }
-    res.render("createDID", { name: "yaro", flag: FLAG });
 });
 app.get("/createVC", (req, res) => {
     const FLAG = 1;

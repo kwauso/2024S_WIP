@@ -16,7 +16,7 @@ router.get("/api2", (req, res) => {
 async function listDID() {
     const identifiers = await agent.didManagerFind();
     identifiers.map((id) => {
-        router.get(`/${id["alias"]}`, (req, res) => {
+        router.get(`/did/${id["alias"]}`, (req, res) => {
             res.json(id);
         });
     });

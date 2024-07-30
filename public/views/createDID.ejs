@@ -4,16 +4,18 @@
         <title>CREATE DID</title>
     </head>
     <body>
-        <p>Hello <%= name %></p>
         <% if (flag === 0){ %>
-            <p>You can create DID!</p>
+            <h3>You can create DID!</h3>
             <p>Click "CREATE" button.</p>
             <form action="/createDID" method="post">
                 <input required type="text" placeholder="name" name="name" autocomplete="off">
                 <input type="submit" value="CREATE">
             </form>
+            > <button><a href="/">BACK TO HOME</a></button>
         <% } else { %>
+            <h3> Hello <%= name %></h3>
             <p>you already have DID</p>
+            > <button><a href="/">BACK TO HOME</a></button>
         <% } %>
     </body>
 </html>

@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
-app.use('/api', api);
+app.use('/username', api);
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req:express.Request, res:express.Response)=>{
@@ -19,7 +19,7 @@ app.get("/", (req:express.Request, res:express.Response)=>{
 
 app.get("/createDID", (req:express.Request, res:express.Response)=>{
     const FLAG = 0;
-    res.render("createDID", {name:"yaro", flag:FLAG});
+    res.render("createDID", {name:"", flag:FLAG});
 });
 
 app.post("/createDID", (req:express.Request, res:express.Response)=>{
@@ -29,10 +29,10 @@ app.post("/createDID", (req:express.Request, res:express.Response)=>{
         const name = req.body.name;
         createDID(`${name}`);
         console.log(name);
+        res.render("createDID", {name:name, flag:FLAG});
     } catch (err){
         console.error(err);
     }
-    res.render("createDID", {name:"yaro", flag:FLAG});
 });
 
 app.get("/createVC", (req:express.Request, res:express.Response)=>{
