@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import api from './routes/userAPI.js';
+import { createDID } from './create-identifier.js';
 const app = express();
 app.set("views", "./public/views");
 app.set("view engine", "ejs");
@@ -20,12 +21,12 @@ app.post("/createDID", (req, res) => {
     const test = "test";
     try {
         const name = req.body.name;
+        createDID(`${name}`);
         console.log(name);
     }
     catch (err) {
         console.error(err);
     }
-    //createDID(`${test}`);
     res.render("createDID", { name: "yaro", flag: FLAG });
 });
 app.get("/createVC", (req, res) => {

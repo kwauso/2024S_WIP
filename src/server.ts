@@ -27,11 +27,11 @@ app.post("/createDID", (req:express.Request, res:express.Response)=>{
     const test = "test";
     try {
         const name = req.body.name;
+        createDID(`${name}`);
         console.log(name);
     } catch (err){
         console.error(err);
     }
-    //createDID(`${test}`);
     res.render("createDID", {name:"yaro", flag:FLAG});
 });
 

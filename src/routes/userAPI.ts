@@ -1,4 +1,5 @@
 import express from 'express';
+import { agent } from '../setup.js';
 const router = express.Router();
 
 const json_1 = [{id:1, name:"taro"}, {id:2, name:2}, {id:99, name:"hello"}]
@@ -17,11 +18,15 @@ router.get("/api2", (req:express.Request, res:express.Response)=>{
     res.json(json_2);
 });
 
-for (let i = 0; i<6; i++){
-    const res_json = [{number: i}, {number: i**i}, {number: i**i**i}];
-    router.get(`/api${i}`, (req:express.Request, res:express.Response)=>{
-        res.json(res_json);
-    });
+async function listDID() {
+  const identifiers = await agent.didManagerFind()
+    identifiers.map((id) => {
+        router.get(`/${id["alias"]}`, (req:express.Request, res:express.Response)=>{
+            res.json(id);
+        });   
+    })
 }
+
+listDID();
 
 export default router
