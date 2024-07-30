@@ -11,6 +11,7 @@ app.set("view engine", "ejs");
 app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
 app.use('/api', api);
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req:express.Request, res:express.Response)=>{
     res.send();
@@ -24,7 +25,13 @@ app.get("/createDID", (req:express.Request, res:express.Response)=>{
 app.post("/createDID", (req:express.Request, res:express.Response)=>{
     const FLAG = 1;
     const test = "test";
-    createDID(`${test}`);
+    try {
+        const name = req.body.name;
+        console.log(name);
+    } catch (err){
+        console.error(err);
+    }
+    //createDID(`${test}`);
     res.render("createDID", {name:"yaro", flag:FLAG});
 });
 
