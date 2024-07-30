@@ -1,2 +1,3 @@
 node_modules
 /src/key_config.ts
+/exec/key_config.js
