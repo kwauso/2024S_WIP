@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import api from './routes/userAPI.js';
+import did_api from './routes/DID_API.js';
 import { createDID } from './create-identifier.js';
 import { createVC } from './create-credential.js';
 const app = express();
@@ -8,7 +8,7 @@ app.set("views", "./public/views");
 app.set("view engine", "ejs");
 //app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
-app.use('/username', api);
+app.use('/did', did_api);
 app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     const cats = ["😺", "😹", "😻", "😼", "😸", "😼", "😽", "🙀", "😿", "😾", "🐱", "🐈", "🐾"];
