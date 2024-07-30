@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOWNLOAD VC</title>
+    </head>
+    <body>
+        <h3>VC</h3>
+        <p>
+            Existing VC:
+        </p>
+        <% let ary=[]  %>
+        <% ary = vc %>
+        <% ary.forEach((vc)=>{ %>
+           > <button><a href="/vc/<%= vc %>"><%= vc %></a></button><br>
+        <% }); %>
+        > <button><a href="/">BACK TO HOME</a></button>
+    </body>
+</html>

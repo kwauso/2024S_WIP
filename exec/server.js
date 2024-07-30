@@ -69,12 +69,23 @@ app.post("/createVC", (req, res) => {
             console.log(JSON.stringify(verifiableCredential, null, 2));
         };
         createVC(alias, age, gender);
-        const link = "home/akira/2024S_WIP/src/vc/" + alias + ".txt";
-        res.render("createVC", { name: alias, flag: FLAG, link: link });
+        res.render("createVC", { name: alias, flag: FLAG });
     }
     catch (err) {
         console.error(err);
     }
+});
+app.get("/downloadVC", (req, res) => {
+    const vcList = fs.readdirSync("src/vc");
+    res.render("listVC", { vc: vcList });
+});
+app.get("/vc", (req, res) => {
+    const vcList = fs.readdirSync("src/vc");
+    vcList.forEach((vc) => {
+        app.get(`/${vc}`, (req, res) => {
+            res.download(`./src/vc/${vc}`);
+        });
+    });
 });
 app.listen(3000, () => {
     console.log('ポート3000番で起動しました');

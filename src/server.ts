@@ -82,12 +82,25 @@ app.post("/createVC", (req:express.Request, res:express.Response)=>{
         }
 
         createVC(alias, age, gender);
-        const link = "home/akira/2024S_WIP/src/vc/" + alias + ".txt";
-        res.render("createVC", {name:alias, flag:FLAG, link:link});
+        res.render("createVC", {name:alias, flag:FLAG});
 
     } catch(err){
         console.error(err);
     }
+});
+
+app.get("/downloadVC", (req:express.Request, res:express.Response)=>{
+    const vcList = fs.readdirSync("src/vc");
+    res.render("listVC", {vc:vcList});
+});
+
+app.get("/vc", (req:express.Request, res:express.Response)=>{
+    const vcList = fs.readdirSync("src/vc");
+    vcList.forEach((vc)=>{
+        app.get(`/${vc}`, (req:express.Request, res:express.Response)=>{
+            res.download(`./src/vc/${vc}`);
+        });
+    });
 });
 
 app.listen(3000,()=>{
