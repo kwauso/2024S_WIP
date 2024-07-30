@@ -4,7 +4,23 @@
         <title>CREATE VC</title>
     </head>
     <body>
-        <p>Hello <%= name %></p>
-        <p>Flag is <%= flag %></p>
+        <% if (flag === 0){ %>
+            <h3>You can create VC!</h3>
+            <p>Click "CREATE" button.</p>
+            <form action="/createVC" method="post">
+                <input required type="text" placeholder="name" name="name" autocomplete="off"><br>
+                <input required type="number" placeholder="age" name="age" autocomplete="off"><br>
+                <input required type="radio" value="male" id="male" name="gender" autocomplete="off">
+                <label for="male">male</label>
+                <input required type="radio" value="female" id="female" name="gender" autocomplete="off">
+                <label for="female">female</label><br>
+                > <input type="submit" value="CREATE">
+            </form>
+            > <button><a href="/">BACK TO HOME</a></button>
+        <% } else { %>
+            <h3> Hello <%= name %></h3>
+            <p>You already have VC</p>
+            > <button><a href="/">BACK TO HOME</a></button>
+        <% } %>
     </body>
 </html>
