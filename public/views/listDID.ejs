@@ -11,7 +11,8 @@
         <% let ary=[]  %>
         <% ary = identifiers %>
         <% ary.forEach((did)=>{ %>
-            <p>did</p>
+        <% const name = did["alias"] %>
+            <p><%= name %></p>
         <% }); %>
         > <button><a href="/">BACK TO HOME</a></button>
     </body>

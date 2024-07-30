@@ -1,7 +1,8 @@
 import { agent } from './setup.js'
+import { VerifiableCredential } from '@veramo/core'
 
-export async function createVC(alias:string, age:number, gender:string) {
-  const identifier = await agent.didManagerGetByAlias({ alias: `${alias}` })
+export async function createVC(alias:string, age:number, gender:string) : Promise<VerifiableCredential>{
+  const identifier = await agent.didManagerGetByAlias({ alias: `${alias}` });
 
   const verifiableCredential = await agent.createVerifiableCredential({
     credential: {
@@ -14,9 +15,8 @@ export async function createVC(alias:string, age:number, gender:string) {
       },
     },
     proofFormat: 'jwt',
-  })
-  console.log(`New credential created`)
-  console.log(JSON.stringify(verifiableCredential, null, 2))
+  });
+  return verifiableCredential;
 }
 
 //main().catch(console.log)

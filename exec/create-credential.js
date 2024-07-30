@@ -13,7 +13,6 @@ export async function createVC(alias, age, gender) {
         },
         proofFormat: 'jwt',
     });
-    console.log(`New credential created`);
-    console.log(JSON.stringify(verifiableCredential, null, 2));
+    return verifiableCredential;
 }
 //main().catch(console.log)

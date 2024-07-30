@@ -1,8 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import did_api from './routes/DID_API.js';
+import vc_api from './routes/VC_API.js';
 import { createDID } from './create-identifier.js';
-import { createVC } from './create-credential.js';
+//import { createVC } from './create-credential.js';
+import { VerifiableCredential } from '@veramo/core';
+import { agent } from './setup.js'
 
 const app: express.Express = express();
 
@@ -12,6 +15,7 @@ app.set("view engine", "ejs");
 //app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
 app.use('/did', did_api);
+app.use('/vc', vc_api);
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req:express.Request, res:express.Response)=>{
@@ -44,6 +48,8 @@ app.get("/createVC", (req:express.Request, res:express.Response)=>{
     res.render("createVC", {name:"", flag:FLAG});
 });
 
+//const listVC: Promise<VerifiableCredential>[] = []
+const listVC: VerifiableCredential[] = []
 app.post("/createVC", (req:express.Request, res:express.Response)=>{
     const FLAG = 1;
     try {
@@ -51,8 +57,28 @@ app.post("/createVC", (req:express.Request, res:express.Response)=>{
         const age = req.body.age;
         const gender = req.body.gender;
         console.log(alias, age, gender);
-        createVC(alias,age,gender);
         res.render("createVC", {name:alias, flag:FLAG});
+
+        const createVC = async(alias:string, age:number, gender:string)=>{
+            const identifier = await agent.didManagerGetByAlias({ alias: `${alias}` });
+          
+            const verifiableCredential = await agent.createVerifiableCredential({
+              credential: {
+                issuer: { id: identifier.did },
+                credentialSubject: {
+                  id: `did:web:${alias}`,
+                  name: alias,
+                  age: age,
+                  gender: gender
+                },
+              },
+              proofFormat: 'jwt',
+            });
+            console.log(JSON.stringify(verifiableCredential, null, 2));
+        }
+
+        createVC(alias, age, gender);
+
     } catch(err){
         console.error(err);
     }

@@ -6,7 +6,7 @@ import {
   IDataStore,
   IDataStoreORM,
   IKeyManager,
-  ICredentialPlugin,
+  ICredentialPlugin
 } from '@veramo/core';
 
 // Core identity manager plugin

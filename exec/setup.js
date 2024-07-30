@@ -1,5 +1,5 @@
 // Core interfaces
-import { createAgent, } from '@veramo/core';
+import { createAgent } from '@veramo/core';
 // Core identity manager plugin
 import { DIDManager } from '@veramo/did-manager';
 //Web did identity provider
