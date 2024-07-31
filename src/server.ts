@@ -2,8 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import did_api from './routes/DID_API.js';
 import { createDID } from './create-identifier.js';
-//import { createVC } from './create-credential.js';
-import { VerifiableCredential } from '@veramo/core';
 import { agent } from './setup.js'
 import fs from "fs";
 
@@ -12,7 +10,6 @@ const app: express.Express = express();
 app.set("views", "./public/views");
 app.set("view engine", "ejs");
 
-//app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
 app.use('/did', did_api);
 app.use(express.urlencoded({ extended: true }));
@@ -46,8 +43,6 @@ app.get("/createVC", (req:express.Request, res:express.Response)=>{
     res.render("createVC", {name:"", flag:FLAG});
 });
 
-//const listVC: Promise<VerifiableCredential>[] = []
-const listVC: VerifiableCredential[] = []
 app.post("/createVC", (req:express.Request, res:express.Response)=>{
     const FLAG = 1;
     try {

@@ -7,7 +7,6 @@ import fs from "fs";
 const app = express();
 app.set("views", "./public/views");
 app.set("view engine", "ejs");
-//app.use(express.static('/home/akira/2024S_WIP/public'));
 app.use(cors());
 app.use('/did', did_api);
 app.use(express.urlencoded({ extended: true }));
@@ -37,8 +36,6 @@ app.get("/createVC", (req, res) => {
     const FLAG = 0;
     res.render("createVC", { name: "", flag: FLAG });
 });
-//const listVC: Promise<VerifiableCredential>[] = []
-const listVC = [];
 app.post("/createVC", (req, res) => {
     const FLAG = 1;
     try {
