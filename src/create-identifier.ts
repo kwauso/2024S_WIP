@@ -8,3 +8,4 @@ export async function createDID(test: string) {
 }
 
 //main().catch(console.log)
+//comment
