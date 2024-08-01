@@ -1,5 +1,5 @@
 {
-    "name": "my_express_app",
+    "name": "2024S_WIP",
     "script": "./exec/server.js",
     "exec_mode": "fork",
     "log-date-format": "YYYY-MM-DD HH:mm Z"
