@@ -66,9 +66,9 @@ plugins: [
   }),
   new DIDManager({
     store: new DIDStore(dbConnection),
-    defaultProvider: 'did:web:hi-lite.jp',
+    defaultProvider: 'did:web:www.hi-lite.jp',
     providers: {
-      'did:web:hi-lite.jp': new WebDIDProvider({
+      'did:web:www.hi-lite.jp': new WebDIDProvider({
         defaultKms: 'local'
       }),
     },

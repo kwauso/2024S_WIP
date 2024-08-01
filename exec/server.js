@@ -39,18 +39,19 @@ app.get("/createVC", (req, res) => {
 app.post("/createVC", (req, res) => {
     const FLAG = 1;
     try {
-        const alias = req.body.name;
+        const alias = req.body.subject_name;
         const age = req.body.age;
         const gender = req.body.gender;
         console.log(alias, age, gender);
-        const createVC = async (alias, age, gender) => {
-            const identifier = await agent.didManagerGetByAlias({ alias: `${alias}` });
+        const createVC = async (issuer_name, subject_name, age, gender) => {
+            const identifier = await agent.didManagerGetByAlias({ alias: `${issuer_name}` });
+            const subject_identifier = await agent.didManagerGetByAlias({ alias: `${subject_name}` });
             const verifiableCredential = await agent.createVerifiableCredential({
                 credential: {
                     issuer: { id: identifier.did },
                     credentialSubject: {
-                        id: `did:web:${alias}`,
-                        name: alias,
+                        id: subject_identifier.did,
+                        name: subject_name,
                         age: age,
                         gender: gender
                     },
@@ -65,7 +66,7 @@ app.post("/createVC", (req, res) => {
             }
             console.log(JSON.stringify(verifiableCredential, null, 2));
         };
-        createVC(alias, age, gender);
+        createVC("otter", alias, age, gender);
         res.render("createVC", { name: alias, flag: FLAG });
     }
     catch (err) {
