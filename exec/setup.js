@@ -43,9 +43,9 @@ export const agent = createAgent({
         }),
         new DIDManager({
             store: new DIDStore(dbConnection),
-            defaultProvider: 'did:web',
+            defaultProvider: 'did:web:localhost:3000',
             providers: {
-                'did:web': new WebDIDProvider({
+                'did:web:localhost:3000': new WebDIDProvider({
                     defaultKms: 'local'
                 }),
             },
